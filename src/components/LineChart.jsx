@@ -8,38 +8,38 @@ const LineChart = ({ coinHistory, currentPrice, coinName }) => {
   const coinPrice = [];
   const coinTimestamp = [];
 
-  console.log('history  ',coinHistory?.data?.history);
-  for (let i = 0; 0 < coinHistory?.data?.history?.length; i++) {
-    // coinPrice.push(coinHistory.data.history[i].price);
-    // coinTimestamp.push(new Date(coinHistory.data.history[i].timestamp));
-    // console.log(coinHistory.data.history[i]);
+  console.log('history  ', coinHistory?.data?.history);
+  for (let i = 0; i < coinHistory?.data?.history?.length; i++) {
+    coinPrice.push(coinHistory.data.history[i].price);
+    coinTimestamp.push(new Date(coinHistory.data.history[i].timestamp).toLocaleDateString());
   }
-console.log(coinPrice);
-  // const data = {
-  //   labels:coinTimestamp,
-  //   datasets:[
-  //     {
-  //       label:'Price in USD',
-  //       data:coinPrice,
-  //       fill:false,
-  //       backgroundColor:'#0071bd',
-  //       borderColor:'#0071bd'
-  //     }
-  //   ]
-  // }
+  console.log('coinPrice', coinPrice);
 
-  // const options={
-  //   scales:{
-  //     yAxes:[
-  //       {
-  //         ticks:{
-  //           beginAtZero:true
-  //         }
-  //       }
-  //     ]
-  //   }
-  // }
-  
+  const data = {
+    labels: coinTimestamp,
+    datasets: [
+      {
+        label: 'Price in USD',
+        data: coinPrice,
+        fill: false,
+        backgroundColor: '#0071bd',
+        borderColor: '#0071bd',
+      },
+    ],
+  };
+
+  const options = {
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            beginAtZero: true,
+          },
+        },
+      ],
+    },
+  };
+
   return (
     <>
       <Row className="chart-header">
@@ -55,7 +55,7 @@ console.log(coinPrice);
           </Title>
         </Col>
       </Row>
-      {/* <Line data={data} options={options} /> */}
+      <Line data={data} options={options} />
     </>
   );
 };
