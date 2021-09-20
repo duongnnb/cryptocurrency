@@ -1,8 +1,7 @@
-import { Typography, Select, Row, Col, Card, Avatar } from 'antd';
+import { Avatar, Card, Col, Row, Select, Typography } from 'antd';
 import moment from 'moment';
 import React, { useState } from 'react';
 import { useGetCryptosQuery } from '../services/cryptoApi';
-
 import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi';
 import Loader from './Loader';
 
@@ -19,9 +18,8 @@ const News = ({ simplified }) => {
   });
   const { data } = useGetCryptosQuery(100);
 
-  if (!cryptoNews?.value) return <Loader/>;
+  if (!cryptoNews?.value) return <Loader />;
 
-  console.log(newsCategory);
   return (
     <Row gutter={[24, 24]}>
       {!simplified && (
